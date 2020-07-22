@@ -1,0 +1,1 @@
+../../../music/bin/generate_music_playlist.sh

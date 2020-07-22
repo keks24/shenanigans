@@ -1,0 +1,1 @@
+../../../snapscreenshot/bin/take_screenshot.sh
