@@ -1,0 +1,25 @@
+# Custom
+who
+
+alias temp="acpi -t"
+alias battery="acpi -b"
+
+alias ll="ls -l"
+alias la="ls -a"
+alias l="ls -CF"
+alias listusers="awk -F \":\" '{print \$1 \"\t\tUID: \" \$3 \"\t\tGID: \" \$4}' /etc/passwd"
+alias listgroups="awk -F \":\" '{print \$1 \"\t\tGID: \" \$3}' /etc/group"
+alias c="cd ~/Programming/C && ./.C.sh"
+alias c\#="cd ~/Programming/C\# && ./.C\#.sh"
+alias c++="cd ~/Programming/C++ && ./.C++.sh"
+alias Java="cd ~/Programming/Java && ./.Java.sh"
+alias Python="cd ~/Programming/Python && ./.Python.sh"
+
+alias chromium_hhbk="chromium --incognito --proxy-server=isaprox:8080 'http://10.247.53.10/'"
+
+vi_encrypt()
+{
+    FILE="$1"
+    
+    vim -x "$FILE"
+}

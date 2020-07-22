@@ -1,0 +1,33 @@
+---
+- name: add jessie backports repository
+  template:
+    src: "jessie_backports.list.j2"
+    dest: "/etc/apt/sources.list.d/jessie_backports.list"
+    mode: 0644
+    owner: root
+    group: root
+  tags:
+    - jessie_backports
+    - template
+    - copy_configuration_file
+
+- name: add jessie backports apt keys
+  apt_key:
+    keyserver: pgpkeys.mit.edu
+    id: "{{ item }}"
+  with_items:
+    - 8B48AD6246925553
+    - 7638D0442B90D010
+  tags:
+    - jessie_backports
+    - apt_key
+    - add_apt_key
+
+- name: update package cache
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+  tags:
+    - jessie_backports
+    - apt
+    - update_package_cache

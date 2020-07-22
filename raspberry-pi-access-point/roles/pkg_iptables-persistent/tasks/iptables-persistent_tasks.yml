@@ -1,0 +1,77 @@
+---
+- name: activate nat
+  shell: echo 1 > /proc/sys/net/ipv4/ip_forward
+  tags:
+    - iptables-persistent
+    - shell
+    - activate_nat
+
+- name: activate nat permanently
+  sysctl:
+    name: "net.ipv4.ip_forward"
+    value: 1
+    sysctl_set: yes
+    reload: yes
+  tags:
+    - iptables-persistent
+    - sysctl
+    - activate_nat_permanently
+
+- name: install firewall (iptables-persistent)
+  apt:
+    name: iptables-persistent
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - iptables-persistent
+    - apt
+    - install_package
+
+- name: set route for nat
+  iptables:
+    table: nat
+    chain: POSTROUTING
+    out_interface: "{{ INTERFACE_ETH }}"
+    jump: MASQUERADE
+    comment: set route for nat
+  tags:
+    - iptables-persistent
+    - iptables
+    - set_route
+
+- name: set forwarding "{{ INTERFACE_ETH }}" -> "{{ INTERFACE_WLAN }}"
+  iptables:
+    chain: FORWARD
+    in_interface: "{{ INTERFACE_ETH }}"
+    out_interface: "{{ INTERFACE_WLAN }}"
+    ctstate: RELATED,ESTABLISHED
+    jump: ACCEPT
+    comment: set forwarding "{{ INTERFACE_ETH }}" -> "{{ INTERFACE_WLAN }}"
+  tags:
+    - iptables-persistent
+    - iptables
+    - set_forwarding
+
+- name: set forwarding "{{ INTERFACE_WLAN }}" -> "{{ INTERFACE_ETH }}"
+  iptables:
+    chain: FORWARD
+    in_interface: "{{ INTERFACE_WLAN }}"
+    out_interface: "{{ INTERFACE_ETH }}"
+    jump: ACCEPT
+    comment: set forwarding "{{ INTERFACE_WLAN }}" -> "{{ INTERFACE_ETH }}"
+  tags:
+    - iptables-persistent
+    - iptables
+    - set_forwarding
+
+- name: save rules
+  shell: iptables-save > /etc/iptables/rules.v4
+# args:
+#   creates: /etc/iptables/rules.v4
+  tags:
+    - iptables-persistent
+    - shell
+    - save_iptables_rules

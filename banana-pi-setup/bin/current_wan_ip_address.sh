@@ -1,0 +1,1 @@
+../../../network/bin/current_wan_ip_address.sh

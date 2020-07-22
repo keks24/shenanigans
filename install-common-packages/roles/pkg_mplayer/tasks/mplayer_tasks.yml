@@ -1,0 +1,40 @@
+---
+- name: install music player (mplayer)
+  apt:
+    name: mplayer
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - mplayer
+    - apt
+    - install_package
+
+- name: create directory "mplayer" in "/etc/"
+  file:
+    path: "/etc/mplayer"
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  tags:
+    - mplayer
+    - file
+    - create_directory
+
+- name: create empty configuration files "config" and "input.conf" in "/etc/mplayer"
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/mplayer/"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - config
+    - input.conf
+  tags:
+    - mplayer
+    - file
+    - copy_configuration_file

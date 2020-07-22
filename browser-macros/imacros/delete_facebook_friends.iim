@@ -1,0 +1,8 @@
+﻿VERSION BUILD=9030808 RECORDER=FX
+TAB T=1
+TAB CLOSEALLOTHERS
+' uncomment the follwing line and replace "<facebook_username>"
+'URL GOTO=https://facebook.com/<facebook_username>/friends
+TAG POS=1 TYPE=SPAN ATTR=TXT:Friends
+WAIT SECONDS=1
+TAG POS=1 TYPE=SPAN ATTR=TXT:Unfriend

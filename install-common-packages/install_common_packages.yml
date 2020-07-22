@@ -1,0 +1,10 @@
+---
+- hosts: server_list
+  roles:
+    - src_jessie_backports
+    - pkg_general
+    - pkg_mplayer
+    - pkg_samba
+    - pkg_tmux
+    - pkg_vim
+    - pkg_zsh

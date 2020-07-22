@@ -1,0 +1,9 @@
+# custom
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet static
+    address 192.168.0.200
+    netmask 255.255.255.0
+    gateway 192.168.0.1
+    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+    #post-up iw wlan0 set power_save off

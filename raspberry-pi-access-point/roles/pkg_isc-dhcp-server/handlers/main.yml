@@ -1,0 +1,50 @@
+---
+- name: start_handler_isc-dhcp-server
+  service:
+    name: isc-dhcp-server
+    state: started
+  tags:
+    - isc-dhcp-server
+    - service
+    - start_service
+    - start_service_isc-dhcp-server
+
+- name: stop_handler_isc-dhcp-server
+  service:
+    name: isc-dhcp-server
+    state: stopped
+  tags:
+    - isc-dhcp-server
+    - service
+    - stop_service
+    - stop_service_isc-dhcp-server
+
+- name: restart_handler_isc-dhcp-server
+  service:
+    name: isc-dhcp-server
+    state: restarted
+  tags:
+    - isc-dhcp-server
+    - service
+    - restart_service
+    - restart_service_isc-dhcp-server
+
+- name: reload_handler_isc-dhcp-server
+  service:
+    name: isc-dhcp-server
+    state: reloaded
+  tags:
+    - isc-dhcp-server
+    - service
+    - reload_service
+    - reload_service_isc-dhcp-server
+
+- name: enable_handler_isc-dhcp-server
+  service:
+    name: isc-dhcp-server
+    enabled: yes
+  tags:
+    - isc-dhcp-server
+    - service
+    - enable_service
+    - enable_service_isc-dhcp-server

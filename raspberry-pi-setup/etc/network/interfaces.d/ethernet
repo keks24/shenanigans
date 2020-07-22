@@ -1,0 +1,9 @@
+# custom
+#auto eth0
+#allow-hotplug eth0
+#iface eth0 inet static
+#    address 192.168.0.201
+#    netmask 255.255.255.0
+#    gateway 192.168.0.1
+
+#iface default inet dhcp

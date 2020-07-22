@@ -1,0 +1,4 @@
+---
+# apt module
+DEFAULT_RELEASE: jessie-backports
+CACHE_VALID_TIME: 86400

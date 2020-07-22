@@ -1,0 +1,26 @@
+---
+- name: set static ip address "{{ OPTION_ROUTERS }}" for "{{ INTERFACE_WLAN }}"
+  shell: ifconfig {{ INTERFACES }} {{ OPTION_ROUTERS }}
+  tags:
+    - interfaces
+    - shell
+    - set_static_ip_address
+
+- name: copy configuration file "interfaces" to "/etc/network/interfaces.d/"
+  template:
+    src: "access_point.j2"
+    dest: "/etc/network/interfaces.d/access_point"
+    mode: 0644
+    owner: root
+    group: root
+  tags:
+    - interfaces
+    - template
+    - copy_configuration_file
+
+- name: activate interface {{ INTERFACE_WLAN }}
+  shell: ifup {{ INTERFACE_WLAN }}
+  tags:
+    - interfaces
+    - shell
+    - activate_interface

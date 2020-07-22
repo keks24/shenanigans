@@ -1,0 +1,92 @@
+---
+# global variables
+
+# jessie backports repository
+#JESSIE_BACKPORTS_REPOSITORY_LINK: deb http://ftp.de.debian.org/debian jessie-backports main
+
+# apt module
+#DEFAULT_RELEASE: jessie-backports
+#CACHE_VALID_TIME: 86400
+
+# interfaces
+INTERFACE_ETH: eth0
+INTERFACE_WLAN: wlan0
+
+# pkg_isc-dhcp-server
+# /etc/default/isc-dhcp-server
+DHCPD_CONF: /etc/dhcp/dhcpd.conf
+INTERFACES: "{{ INTERFACE_WLAN }}"
+
+# /etc/dhcp/dhcpd.conf
+OPTION_DOMAIN_NAME: RaspberryPiMusicPlayer.local
+OPTION_DOMAIN_NAME_SERVERS: 213.73.91.35
+DEFAULT_LEASE_TIME: 86400
+MAX_LEASE_TIME: 86400
+SUBNET: 192.168.1.0
+NETMASK: 255.255.255.0
+RANGE_START: 192.168.1.2
+RANGE_END: 192.168.1.5
+OPTION_ROUTERS: 192.168.1.1
+
+# pkg_hostapd
+# /etc/hostapd/hostapd.conf
+# wifi interface name
+#INTERFACE: wlan0
+
+# chip driver to be used
+DRIVER: nl80211
+
+# name of the network
+SSID: RaspberryPiMusicPlayer
+
+# operation mode:
+# a = IEEE 802.11a (5 GHz)
+# b = IEEE 802.11b (2.4 GHz)
+# g = IEEE 802.11g (2.4 GHz)
+# ad = IEEE 802.11ad (60 GHz)
+HW_MODE: g
+
+# use 1, 6 or 11 for compatibility
+CHANNEL: 6
+
+# station mac address-based authentication:
+# 0 = accept unless in deny list
+# 1 = deny unless in accept list
+# 2 = use external radius server (accept/deny lists are searched first)
+MACADDR_ACL: 0
+
+# authentication algorithms:
+# 0 = open system authentication
+# 1 = shared key authentication (requires wep)
+AUTH_ALGS: 1
+
+# # Send empty SSID in beacons and ignore probe request frames that do not specify full SSID:
+# 0 = disabled
+# 1 = send empty (length=0) SSID in beacon and ignore probe request for broadcast SSID
+# 2 = clear SSID (ASCII 0), but keep the original length (this may be required with some clients that do not support empty SSID) and ignore probe requests for broadcast SSID
+IGNORE_BROADCAST_SSID: 0
+
+# enable wpa:
+# 0 = wpa
+# 1 = IEEE 802.11i/RSN (WPA2) (dot11RSNAEnabled)
+# 2 = wpa2
+WPA: 2
+
+# wpa pre-shared keys
+WPA_PASSPHRASE: sup3r_pa55w0RD
+
+# set of accepted key management algorithms:
+# WPA-PSK
+# WPA-EAP
+# WPA-PSK WPA-EAP
+# WPA-PSK-SHA256
+# WPA-EAP-SHA256
+WPA_KEY_MGMT: WPA-PSK
+
+# set of accepted cipher suites:
+# CCMP = aes in counter mode with cbc-mac [rfc 3610, ieee 802.11i/d7.0]
+# TKIP = temporal key integrity protocol [ieee 802.11i/d7.0]
+RSN_PAIRWISE: CCMP
+
+# /etc/default/hostapd
+DAEMON_CONF: /etc/hostapd/hostapd.conf

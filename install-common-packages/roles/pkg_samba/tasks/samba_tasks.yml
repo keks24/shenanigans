@@ -1,0 +1,34 @@
+---
+- name: install samba share (samba)
+  apt: 
+    name:
+      - samba
+      - samba-common
+      - samba-common-bin
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - samba
+    - apt
+    - install_package
+
+- name: copy "smb.conf" and "smb.conf.bak" to "/etc/samba/"
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/samba/"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - smb.conf
+    - smb.conf.bak
+  notify:
+    - restart_handler_samba
+    - enable_handler_samba
+  tags:
+    - samba
+    - copy
+    - copy_configuration_file

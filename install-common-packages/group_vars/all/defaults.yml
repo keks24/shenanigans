@@ -1,0 +1,9 @@
+---
+# global variables
+
+# jessie backports repository
+#JESSIE_BACKPORTS_REPOSITORY_LINK: deb http://ftp.de.debian.org/debian jessie-backports main
+
+# apt module
+#DEFAULT_RELEASE: jessie-backports
+#CACHE_VALID_TIME: 86400

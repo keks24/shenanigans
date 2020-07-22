@@ -1,0 +1,47 @@
+---
+- name: install general packages
+  apt:
+    name:
+      - alsa-utils
+      - cifs-utils
+      - cmatrix
+      - curl
+      - ethtool
+      - fapg
+      - geoip-bin
+      - gcc
+      - git
+      - hdparm
+      - htop
+      - hwinfo
+      - iotop
+      - imagemagick
+      - lftp
+      - lm-sensors
+      - lshw
+      - lsof
+      - make
+      - nano
+      - ncdu
+      - nload
+      - nmap
+      - ntfs-3g
+      - ntp
+      - ntpdate
+      - obexfs
+      - pv
+      - rfkill
+      - rsync
+      - tree
+      - unzip
+      - wget
+      - zip
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - general
+    - apt
+    - install_package

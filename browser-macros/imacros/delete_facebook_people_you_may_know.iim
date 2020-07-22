@@ -1,0 +1,8 @@
+﻿VERSION BUILD=9030808 RECORDER=FX
+TAB T=1
+TAB CLOSEALLOTHERS
+SET !ERRORIGNORE YES
+SET !TIMEOUT_STEP 0
+' uncomment the follwing line and replace "<facebook_username>"
+'URL GOTO=https://m.facebook.com/<facebook_username>
+TAG POS=1 TYPE=A ATTR=TXT:Remove

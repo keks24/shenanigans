@@ -1,0 +1,1 @@
+../../../music/bin/play_music.sh

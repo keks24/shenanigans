@@ -1,0 +1,3 @@
+---
+# tasks file for pkg_isc-dhcp-server
+- include: isc-dhcp-server_tasks.yml

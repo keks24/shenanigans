@@ -1,0 +1,14 @@
+# Wireless LAN Hotspot
+auto {{ INTERFACE_WLAN }}
+allow-hotplug {{ INTERFACE_WLAN }}
+iface {{ INTERFACE_WLAN }} inet static
+    address {{ OPTION_ROUTERS }}
+    netmask {{ NETMASK }}
+
+#allow-hotplug wlan0
+#iface wlan0 inet manual
+#    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+
+#allow-hotplug wlan1
+#iface wlan1 inet manual
+#    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf

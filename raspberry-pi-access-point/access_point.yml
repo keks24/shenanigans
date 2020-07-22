@@ -1,0 +1,8 @@
+---
+- hosts: server_list
+  roles:
+    - src_jessie_backports
+    - cfg_interfaces
+    - pkg_isc-dhcp-server
+    - pkg_hostapd
+    - pkg_iptables-persistent

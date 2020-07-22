@@ -1,0 +1,34 @@
+---
+- name: install z shell (zsh)
+  apt:
+   name: zsh
+   state: latest
+   default_release: "{{ DEFAULT_RELEASE }}"
+   update_cache: yes
+   cache_valid_time: "{{ CACHE_VALID_TIME }}"
+   allow_unauthenticated: yes
+  tags:
+    - zsh
+    - apt
+    - install_package
+
+- name: copy configuration files "zshrc" and "zshrc.local" to "/etc/zsh/"
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/zsh/"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - zshrc
+    - zshrc.local
+  tags:
+    - zsh
+    - copy
+    - copy_configuration_file
+
+- name: set z shell for user root
+  user:
+    name: root
+    group: root
+    shell: /bin/zsh

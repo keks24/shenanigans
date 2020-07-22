@@ -1,0 +1,65 @@
+---
+- name: start_handler_samba
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - smbd
+    - nmbd
+  tags:
+    - samba
+    - service
+    - start_service
+    - start_service_samba
+
+- name: stop_handler_samba
+  service:
+    name: "{{ item }}"
+    state: stopped
+  with_items:
+    - smbd
+    - nmbd
+  tags:
+    - samba
+    - service
+    - stop_service
+    - stop_service_samba
+
+- name: restart_handler_samba
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - smbd
+    - nmbd
+  tags:
+    - samba
+    - service
+    - restart_service
+    - restart_service_samba
+
+- name: reload_handler_samba
+  service:
+    name: "{{ item }}"
+    state: reloaded
+  with_items:
+    - smbd
+    - nmbd
+  tags:
+    - samba
+    - service
+    - reload_service
+    - reload_service_samba
+
+- name: enable_handler_samba
+  service:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - smbd
+    - nmbd
+  tags:
+    - samba
+    - service
+    - enable_service
+    - enable_service_samba

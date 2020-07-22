@@ -1,0 +1,18 @@
+# custom
+[Unit]
+Description=pyloadCore
+ConditionPathExists=/usr/bin/pyLoadCore
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/pyLoadCore --daemon --configdir=/home/pyload/.pyload --pidfile=/run/pyload/pyload.pid
+Restart=on-abort
+KillSignal=SIGQUIT
+PIDFile=/run/pyload/pyload.pid
+User=pyload
+Group=pyload
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target

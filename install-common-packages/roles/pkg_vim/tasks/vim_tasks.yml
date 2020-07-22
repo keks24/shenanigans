@@ -1,0 +1,28 @@
+---
+- name: install visual improved (vim)
+  apt:
+   name: vim
+   state: latest
+   default_release: "{{ DEFAULT_RELEASE }}"
+   update_cache: yes
+   cache_valid_time: "{{ CACHE_VALID_TIME }}"
+   allow_unauthenticated: yes
+  tags:
+    - vim
+    - apt
+    - install_package
+
+- name: copy configuration files "vimrc" and "vimrc.local" to "/etc/vim/"
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/vim/"
+    mode: 0644
+    owner: root
+    group: root
+  with_items:
+    - vimrc
+    - vimrc.local
+  tags:
+    - vim
+    - copy
+    - copy_configuration_file

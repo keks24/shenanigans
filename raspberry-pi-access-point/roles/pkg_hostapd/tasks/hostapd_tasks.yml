@@ -1,0 +1,43 @@
+---
+- name: install access point management tool (hostapd)
+  apt:
+   name: hostapd
+   state: latest
+   default_release: "{{ DEFAULT_RELEASE }}"
+   update_cache: yes
+   cache_valid_time: "{{ CACHE_VALID_TIME }}"
+   allow_unauthenticated: yes
+  tags:
+    - hostapd
+    - apt
+    - install_package
+
+- name: copy configuration file "hostapd.conf" to "/etc/hostapd/"
+  template:
+    src: "hostapd.conf.j2"
+    dest: "/etc/hostapd/hostapd.conf"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - restart_handler_hostapd
+    - enable_handler_hostapd
+  tags:
+    - hostapd
+    - template
+    - copy_configuration_file
+
+- name: copy configuration file "hostapd" to "/etc/default/"
+  template:
+    src: "hostapd.j2"
+    dest: "/etc/default/hostapd"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - restart_handler_hostapd
+    - enable_handler_hostapd
+  tags:
+    - hostapd
+    - template
+    - copy_configuration_file

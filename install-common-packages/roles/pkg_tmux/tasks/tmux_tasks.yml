@@ -1,0 +1,35 @@
+---
+- name: install terminal multiplexer (tmux)
+  apt:
+    name: tmux
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - tmux
+    - apt
+    - install_package
+
+# Copy Module does not support Wildcards!
+#- name: Copy .tmux.conf to all Home Directories
+#  copy:
+#    src: .tmux.conf
+#    dest: "/home/*"
+#  tags:
+#    - tmux
+#    - copy
+#    - copy_configuration
+
+- name: copy configuration file "tmux.conf" to "/etc/"
+  copy:
+    src: "tmux.conf"
+    dest: "/etc/"
+    mode: 0644
+    owner: root
+    group: root
+  tags:
+    - tmux
+    - copy
+    - copy_configuration_file

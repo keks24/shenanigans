@@ -1,0 +1,58 @@
+---
+- name: install dhcp server (isc-dhcp-server)
+  apt:
+    name: isc-dhcp-server
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - isc-dhcp-server
+    - apt
+    - install_package
+
+- name: install wifi drivers (firmware-linux-free and firmware-realtek)
+  apt:
+    name:
+      - firmware-linux-free
+      - firmware-realtek
+    state: latest
+    default_release: "{{ DEFAULT_RELEASE }}"
+    update_cache: yes
+    cache_valid_time: "{{ CACHE_VALID_TIME }}"
+    allow_unauthenticated: yes
+  tags:
+    - isc-dhcp-server
+    - apt
+    - install_package
+
+- name: copy configuration file "isc-dhcp-server" to "/etc/default/"
+  template:
+      src: "isc-dhcp-server.j2"
+      dest: "/etc/default/isc-dhcp-server"
+      mode: 0644
+      owner: root
+      group: root
+  notify:
+    - restart_handler_isc-dhcp-server
+    - enable_handler_isc-dhcp-server
+  tags:
+    - isc-dhcp-server
+    - template
+    - copy_configuration_file
+
+- name: copy configuration file "dhcpd.conf" to "/etc/dhcp/"
+  template:
+    src: "dhcpd.conf.j2"
+    dest: "/etc/dhcp/dhcpd.conf"
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - restart_handler_isc-dhcp-server
+    - enable_handler_isc-dhcp-server
+  tags:
+    - isc-dhcp-server
+    - template
+    - copy_configuration_file
