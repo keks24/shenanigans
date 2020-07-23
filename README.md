@@ -1,2 +1,2 @@
 # shenanigans
-A collection of things for educational purposes only.
+a collection of things for educational purposes only.

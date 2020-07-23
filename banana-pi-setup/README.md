@@ -1,2 +1,2 @@
 # banana-pi-setup
-Just very old configuration files.
+just very old configuration files.

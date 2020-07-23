@@ -1,2 +1,2 @@
 # faster-windows-shutdown
-Batch script to let Windows shut down faster.
+batch script to let windows shut down faster.

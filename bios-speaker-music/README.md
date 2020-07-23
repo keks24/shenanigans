@@ -1,2 +1,2 @@
 # bios-speaker-music
-Miscellaneous collection of scripts playing music via the BIOS speaker using `beep`.
+miscellaneous collection of scripts playing music via the bios speaker using `beep`.
